@@ -32,4 +32,13 @@ class AdController extends Controller
             'message' => 'Ad Deleted Successfully',
         ]);
     }
+
+    public function ads()
+    {
+        $ads = Ad::latest()->get();
+        return response()->json([
+            'status' => true,
+            'ads' => $ads,
+        ]);
+    }
 }
