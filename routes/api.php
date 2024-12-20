@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('guest')->group(function () {
     Route::post('/login', [AuthController::class, 'login'])->name('api.login');
 
-    Route::post('/signup', [AuthController::class, 'signup'])->name('api.login');
+    Route::post('/signup', [AuthController::class, 'signup'])->name('api.signup');
 
     Route::post('/reset-password', [VerifyController::class, 'sendResetLink'])->name('api.reset.password');
 });
