@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PlanController;
 use App\Http\Controllers\VerifyController;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -13,6 +14,11 @@ Route::get('/', function () {
     }
     return redirect()->route('login');
 })->name('home');
+
+Route::get('/optimize', function () {
+    $exitCode = Artisan::call('optimize');
+    dd($exitCode);
+});
 
 Route::get('email/verify/view/{id}/{hash}', [VerifyController::class, 'viewEmail'])->name('email.verification.view');
 Route::get('password/reset/view/{email}/{token}', [VerifyController::class, 'viewInBrowser'])->name('password.reset.view');
